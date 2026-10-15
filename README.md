@@ -180,8 +180,7 @@ O *service principal* do app de cada participante também precisa de permissões
 - Leitura de Python (os notebooks já vêm prontos; o participante executa, lê e faz pequenas alterações).
 - Familiaridade com o vocabulário de comércio exterior, que o time da LogComex já domina.
 
-### Custos
-O consumo é baixo: notebooks serverless, um warehouse 2X-Small com auto-stop e um app pequeno por participante.
+### Após o workshop
 Depois do workshop, rode o `99_Limpeza` (ou pare o app em *Compute → Apps*) para não deixar recursos ligados.
 
 ---
