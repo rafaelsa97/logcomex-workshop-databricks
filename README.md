@@ -198,9 +198,6 @@ Depois do workshop, rode o `99_Limpeza` (ou pare o app em *Compute → Apps*) pa
    2. Abrir o `00_Setup`, conectar ao compute **Serverless** e clicar em **Run all**.
 4. **Durante os labs:** seguir os notebooks 01 → 04 na ordem. Cada lab cria automaticamente o que o seguinte precisa.
 
-O roteiro detalhado do instrutor, com falas, resultados esperados e solução de problemas, está em
-`Roteiro_Workshop_LogComex_Databricks.pdf`.
-
 ---
 
 ## Para quem mantém o material
