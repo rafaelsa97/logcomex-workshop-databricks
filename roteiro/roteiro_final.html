@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Roteiro do Instrutor — Workshop LogComex × Databricks</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+  @page :first { margin: 0; }
+  :root { --roxo:#6613D0; --roxo-esc:#4A0E99; --roxo-claro:#B48BF0; --lilas:#F6F3FC; --preto:#0B0D19; --cinza:#5B5B6B; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Poppins', Helvetica, Arial, sans-serif; color: var(--preto); font-size: 9.2pt; line-height: 1.42; margin: 0; }
+  h1 { font-size: 20pt; margin: 0 0 4mm; color: var(--preto); }
+  h1 .num { color: var(--roxo); margin-right: 3mm; }
+  h2 { font-size: 12.5pt; color: var(--roxo); margin: 5mm 0 2mm; break-after: avoid; }
+  h3 { font-size: 10.5pt; margin: 3mm 0 1mm; break-after: avoid; }
+  p { margin: 0 0 2.5mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+  li { margin-bottom: .6mm; }
+  code { font-family: 'SF Mono', Menlo, monospace; font-size: 8.6pt; background: var(--lilas); padding: .2mm 1.2mm; border-radius: 1mm; color: var(--roxo-esc); }
+  pre { font-family: 'SF Mono', Menlo, monospace; font-size: 8.2pt; background: var(--preto); color: #EDE7FA; padding: 3mm 4mm; border-radius: 2mm; white-space: pre; font-size: 7.2pt; }
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 3mm; font-size: 8.4pt; page-break-inside: avoid; }
+  th { background: var(--preto); color: white; text-align: left; padding: 1.8mm 2.5mm; font-weight: 600; }
+  td { padding: 1.6mm 2.5mm; border-bottom: 1px solid #E6E0F2; vertical-align: top; }
+  tr:nth-child(even) td { background: #FBFAFE; }
+  .secao { break-before: page; }
+  .grid2 h3 { break-after: auto; }
+  .topo { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--roxo); padding-bottom: 2mm; margin-bottom: 5mm; }
+  .topo img { height: 6mm; }
+  .topo span { font-size: 8pt; color: var(--cinza); }
+  .caixa { background: var(--lilas); border-left: 4px solid var(--roxo); padding: 3mm 4mm; border-radius: 1.5mm; margin: 3mm 0; page-break-inside: avoid; }
+  .caixa.preta { background: var(--preto); color: white; border-left-color: var(--roxo-claro); }
+  .caixa.preta b { color: var(--roxo-claro); }
+  .caixa.alerta { background: #FFF7E6; border-left-color: #F2B705; }
+  .tag { display: inline-block; background: var(--roxo); color: white; font-size: 7.5pt; font-weight: 600; padding: .4mm 2mm; border-radius: 3mm; margin-right: 1mm; }
+  .tag.preto { background: var(--preto); }
+  .tag.cinza { background: #A1A1AA; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .fala { border-left: 3px solid var(--roxo-claro); padding-left: 3mm; color: #2A2A3A; font-style: italic; margin: 2mm 0; }
+  .tempo { float: right; color: var(--roxo); font-weight: 600; font-size: 9pt; }
+  /* capa */
+  .capa { height: 297mm; width: 210mm; background: var(--preto); color: white; position: relative; padding: 28mm 22mm; overflow: hidden; }
+  .capa .faixa { position: absolute; right: -40mm; top: -40mm; width: 150mm; height: 150mm; background: var(--roxo); transform: rotate(45deg); opacity: .9; }
+  .capa .faixa2 { position: absolute; right: 10mm; bottom: 30mm; width: 60mm; height: 60mm; border: 6mm solid var(--roxo); transform: rotate(45deg); opacity: .5; }
+  .capa img.logo { height: 13mm; position: relative; }
+  .capa .x { font-size: 16pt; color: var(--roxo-claro); margin: 0 4mm; position: relative; top: -3mm; }
+  .capa .dbx { font-size: 20pt; font-weight: 700; position: relative; top: -2mm; }
+  .capa h1 { color: white; font-size: 30pt; line-height: 1.15; margin-top: 55mm; max-width: 150mm; position: relative; }
+  .capa h1 span { color: var(--roxo-claro); }
+  .capa .sub { font-size: 13pt; color: #CFC6E6; max-width: 150mm; position: relative; }
+  .capa .meta { position: absolute; bottom: 28mm; left: 22mm; font-size: 10pt; color: #CFC6E6; }
+  .capa .meta b { color: white; }
+  .agenda td:first-child { white-space: nowrap; font-weight: 600; color: var(--roxo); width: 24mm; }
+  .check li { list-style: none; margin-left: -5mm; margin-bottom: .3mm; }
+  .check li:before { content: "☐ "; color: var(--roxo); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ============================== CAPA ============================== -->
+<div class="capa">
+  <div class="faixa"></div><div class="faixa2"></div>
+  <div><img class="logo" src="../assets/logcomex-logotipo-branco.svg"><span class="x">×</span><span class="dbx">databricks</span></div>
+  <h1>Workshop hands-on:<br><span>do dado bruto ao produto de dados</span></h1>
+  <p class="sub">Engenharia de dados · AI/BI Dashboards · Genie · Databricks Apps — aplicados ao comércio exterior</p>
+  <div class="meta">
+    <b>Roteiro do instrutor</b><br>
+    Escritório LogComex · 13:00 – 17:00<br>
+    Público: time técnico de dados (engenharia, analytics, ciência de dados)
+  </div>
+</div>
+
+<!-- ============================== 1. VISÃO GERAL ============================== -->
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h1><span class="num">1</span>Visão geral</h1>
+
+<h2>Objetivo</h2>
+<p>Mostrar, na prática e em uma tarde, como o time de dados da LogComex pode sair de <b>arquivos brutos de comércio exterior</b>
+(DIs, DU-Es, eventos de rastreamento de armadores) e chegar a <b>produtos de dados prontos para o cliente final</b> — um
+dashboard governado, uma interface de perguntas em linguagem natural e uma aplicação web — <b>tudo em uma única plataforma</b>,
+com governança do Unity Catalog do início ao fim.</p>
+
+<div class="caixa preta">
+  <b>Ao final, cada participante terá construído no próprio ambiente:</b><br>
+  ① um pipeline medalhão (Bronze → Silver → Gold) com ingestão incremental &nbsp;·&nbsp;
+  ② o dashboard AI/BI <b>Radar Comex</b> &nbsp;·&nbsp; ③ um Genie space em português sobre comex &nbsp;·&nbsp;
+  ④ o app <b>Radar Comex</b> (Streamlit) publicado, com chat integrado ao Genie.
+</div>
+
+<h2>Formato e premissas</h2>
+<ul>
+  <li><b>Hands-on individual:</b> cada participante executa os notebooks no seu ambiente. Todo o setup é automatizado (notebook <code>00_Setup</code>, ~3 min).</li>
+  <li><b>Isolamento:</b> cada pessoa ganha um schema próprio <code>logcomex_ws_&lt;usuario&gt;</code>, um dashboard, um Genie space e um app com o seu nome — funciona tanto em workspaces individuais quanto em um workspace compartilhado.</li>
+  <li><b>Dados 100% sintéticos</b>, mas realistas: NCMs reais, portos/URFs, canais de parametrização, armadores, PTAX. Nenhum dado de cliente.</li>
+  <li><b>Engenharia de dados no nível essencial</b> (30 min): o foco da tarde está em consumo — Dashboards, Genie e Apps.</li>
+</ul>
+
+<h2>A história escondida nos dados</h2>
+<p>Os dados foram gerados com três "achados" para os participantes descobrirem com cada ferramenta — use-os para dar ritmo e
+gerar o efeito "uau" ao longo da tarde:</p>
+<table>
+  <tr><th style="width:30%">Achado</th><th>O que aparece nos dados</th><th style="width:22%">Onde é descoberto</th></tr>
+  <tr><td><b>⚡ Boom dos veículos elétricos</b></td><td>Importação da NCM 8703.80.00 (majoritariamente da China) cresce forte a partir de 2025: US$ 577,7 mi em 2024 → US$ 3,0 bi em 2025 → US$ 4,7 bi só até set/2026.</td><td>Dashboard (filtro Automotivo), Genie, App (aba NCM)</td></tr>
+  <tr><td><b>🚧 Gargalo em Paranaguá</b></td><td>Desde jun/2026 o tempo médio de desembaraço marítimo em Paranaguá sobe de 2,3 para 5,9 dias, com mais DIs em canal vermelho (6% → 13%).</td><td>Lab 1 (1ª descoberta), Dashboard pág. 2, Genie</td></tr>
+  <tr><td><b>🐢 Armador com atrasos crescentes</b></td><td>ZIM tem o maior atraso médio vs. ETA (5,5 dias, contra 2,0 dias da média dos demais), concentrado nas rotas da Ásia.</td><td>Dashboard pág. 2, Genie, App (Rastreamento)</td></tr>
+</table>
+
+</div>
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h2 style="margin-top:0">Materiais do workshop</h2>
+<table>
+  <tr><th style="width:32%">Arquivo</th><th>Uso</th></tr>
+  <tr><td><code>LogComex_Workshop.dbc</code></td><td>Pacote com todos os notebooks — o participante importa no workspace (Workspace → Import).</td></tr>
+  <tr><td><code>00_Setup</code></td><td>Lab 0 · cria schema, volume, dados sintéticos, escolhe o warehouse e já cria o app (compute sobe em background). Tem modo <i>fast-track</i>.</td></tr>
+  <tr><td><code>01_Engenharia_de_Dados</code></td><td>Lab 1 · Auto Loader, <code>read_files</code>, Silver com qualidade/quarentena/constraint, Gold, comentários, time travel, linhagem.</td></tr>
+  <tr><td><code>02_Dashboard_AIBI</code></td><td>Lab 2 · cria e publica o dashboard Radar Comex via API + exercícios guiados.</td></tr>
+  <tr><td><code>03_Genie</code></td><td>Lab 3 · cria o Genie space curado (instruções, exemplos SQL, perguntas sugeridas, benchmarks) + exercícios.</td></tr>
+  <tr><td><code>04_Databricks_Apps</code></td><td>Lab 4 · gera o código do app, aplica permissões mínimas ao service principal, faz deploy + exercícios.</td></tr>
+  <tr><td><code>05_Demo_Instrutor_App_React</code></td><td>Demo do instrutor (opcional) · publica o mesmo Radar Comex em React + FastAPI para o fechamento do Lab 4.</td></tr>
+  <tr><td><code>00_Instrutor_Preparacao</code> · <code>99_Limpeza</code></td><td>Preparação de workspace compartilhado (instrutor) · remoção dos recursos de cada participante.</td></tr>
+</table>
+</div>
+
+<!-- ============================== 2. AGENDA ============================== -->
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h1><span class="num">2</span>Agenda minuto a minuto</h1>
+
+<table class="agenda">
+  <tr><th>Horário</th><th>Bloco</th><th>O que acontece</th></tr>
+  <tr><td>13:00 – 13:30</td><td><b>Chegada</b></td><td>Recepção, Wi-Fi, login no workspace, importação do <code>.dbc</code>. <b>Peça para cada um já rodar o <code>00_Setup</code></b> (ganha-se ~10 min de workshop e o compute dos apps sobe com folga).</td></tr>
+  <tr><td>13:30 – 13:35</td><td>Abertura</td><td>Boas-vindas, objetivos, agenda, regras do hands-on (ajudantes circulando, canal de dúvidas).</td></tr>
+  <tr><td>13:35 – 13:47</td><td>Teoria 1</td><td>Data Intelligence Platform e Lakehouse: por que uma plataforma única para dados + IA.</td></tr>
+  <tr><td>13:47 – 13:57</td><td>Teoria 2</td><td>Unity Catalog: governança, linhagem, compartilhamento — essencial para dados de clientes da LogComex.</td></tr>
+  <tr><td>13:57 – 14:07</td><td>Teoria 3</td><td>Lakeflow (Connect, Declarative Pipelines, Jobs) e Delta Lake — engenharia de dados no Databricks.</td></tr>
+  <tr><td>14:07 – 14:15</td><td>Teoria 4</td><td>Databricks SQL e AI/BI Dashboards.</td></tr>
+  <tr><td>14:15 – 14:22</td><td>Teoria 5</td><td>AI/BI Genie: perguntas em linguagem natural com semântica curada.</td></tr>
+  <tr><td>14:22 – 14:30</td><td>Teoria 6</td><td>Databricks Apps + como tudo se conecta para a LogComex · perguntas.</td></tr>
+  <tr><td>14:30 – 14:40</td><td><b>Lab 0</b></td><td>Checagem do setup (quem não rodou, roda agora; quem teve problema usa <i>fast-track</i>).</td></tr>
+  <tr><td>14:40 – 15:10</td><td><b>Lab 1</b></td><td>Engenharia de dados: Bronze → Silver → Gold.</td></tr>
+  <tr><td>15:10 – 15:40</td><td><b>Lab 2</b></td><td>AI/BI Dashboards.</td></tr>
+  <tr><td>15:40 – 15:50</td><td>☕ Intervalo</td><td>Use para destravar quem estiver atrasado (fast-track do Lab 1).</td></tr>
+  <tr><td>15:50 – 16:20</td><td><b>Lab 3</b></td><td>Genie.</td></tr>
+  <tr><td>16:20 – 16:45</td><td><b>Lab 4</b></td><td>Databricks Apps.</td></tr>
+  <tr><td>16:45 – 17:00</td><td><b>Encerramento</b></td><td>Recapitulação, mapa de casos de uso LogComex, próximos passos, pesquisa de satisfação.</td></tr>
+</table>
+
+<div class="caixa"><b>Regra de ouro do tempo:</b> cada lab tem um <b>núcleo obrigatório</b> (primeira metade do tempo) e
+<b>exercícios de aprofundamento</b>. Se a turma atrasar, faça só o núcleo e siga — o modo <i>fast-track</i> e a criação
+automática de dashboard/Genie/app garantem que ninguém fica sem os artefatos do lab seguinte.</div>
+
+<table>
+  <tr><th>Lab</th><th>Núcleo obrigatório</th><th>Pode cortar se atrasar</th></tr>
+  <tr><td>Lab 1</td><td>1.1 a 1.5 (Run das células + leitura guiada)</td><td>1.6 governança (mostre só a linhagem na tela)</td></tr>
+  <tr><td>Lab 2</td><td>Criar + explorar + 1 visualização com IA</td><td>Dataset SQL próprio, agendamento</td></tr>
+  <tr><td>Lab 3</td><td>Criar + perguntas + ensinar "operação crítica"</td><td>SQL expressions, benchmarks</td></tr>
+  <tr><td>Lab 4</td><td>Deploy + explorar + 1 alteração e redeploy</td><td>Desafio com Assistant, permissões</td></tr>
+</table>
+</div>
+
+<!-- ============================== 3. PREPARAÇÃO ============================== -->
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h1><span class="num">3</span>Preparação</h1>
+
+<h2>Escolha da modalidade de ambiente</h2>
+<div class="grid2">
+  <div class="caixa"><span class="tag">A</span><b>Workspace próprio por participante</b><br>
+  Cada participante usa o seu workspace (com Unity Catalog). Nada a preparar além dos pré-requisitos abaixo — os notebooks
+  detectam o catálogo padrão automaticamente (widget <code>catalogo</code> permite trocar).</div>
+  <div class="caixa"><span class="tag preto">B</span><b>Workspace compartilhado</b><br>
+  Todos no mesmo workspace (ex.: <code>fevm-serverless-stable-g01yyz</code>). Adicione os participantes como usuários e rode
+  <b>uma vez</b> o notebook <code>00_Instrutor_Preparacao</code> (concede <code>USE CATALOG</code>/<code>CREATE SCHEMA</code> e
+  <code>CAN_USE</code> no warehouse). Cada pessoa continua isolada no próprio schema/app.</div>
+</div>
+
+<h2>Pré-requisitos do workspace</h2>
+<table>
+  <tr><th style="width:34%">Recurso</th><th>Por quê</th></tr>
+  <tr><td>Unity Catalog + catálogo com <code>CREATE SCHEMA</code></td><td>Cada participante cria o schema <code>logcomex_ws_&lt;usuario&gt;</code>.</td></tr>
+  <tr><td>Compute <b>serverless</b> para notebooks</td><td>Todos os labs rodam em serverless (sem cluster para configurar).</td></tr>
+  <tr><td>SQL Warehouse (serverless de preferência)</td><td>Dashboard, Genie e App. O setup reaproveita um existente ou cria um 2X-Small.</td></tr>
+  <tr><td>AI/BI Genie, Dashboards e Databricks Assistant</td><td>Labs 2 e 3; Assistant usado nos desafios dos Labs 1, 2 e 4.</td></tr>
+  <tr><td>Databricks Apps habilitado + cota de apps</td><td>1 app por participante. Verifique o limite de apps do workspace para o tamanho da turma.</td></tr>
+</table>
+
+<h2>Checklist</h2>
+<div class="grid2">
+<div>
+<h3>D-7</h3>
+<ul class="check">
+  <li>Confirmar modalidade (A ou B) e lista de participantes/e-mails.</li>
+  <li>Validar pré-requisitos e cota de apps.</li>
+  <li>Se modalidade B: criar usuários e rodar <code>00_Instrutor_Preparacao</code>.</li>
+  <li>Enviar aos participantes: link do workspace + <code>LogComex_Workshop.dbc</code>.</li>
+  <li>Preparar os slides da parte teórica (estrutura na seção 4).</li>
+</ul>
+<h3>D-1</h3>
+<ul class="check">
+  <li>Rodar o fluxo completo com um usuário de teste (Setup → Lab 4, ~15 min) e o <code>05_Demo_Instrutor_App_React</code> com o seu.</li>
+  <li>Verificar a validade do workspace (FEVM: estender se necessário).</li>
+</ul>
+</div>
+<div>
+<h3>Dia — 12:30</h3>
+<ul class="check">
+  <li>Testar projetor/Wi-Fi e login no workspace pela rede do cliente.</li>
+  <li>Ligar o SQL Warehouse (evita a espera de partida a frio).</li>
+  <li>Deixar abertas no seu navegador: seu dashboard, Genie, app Streamlit e app React já prontos (plano B e demo final).</li>
+</ul>
+<h3>Durante a chegada (13:00–13:30)</h3>
+<ul class="check">
+  <li>Workspace → sua pasta → <b>Import</b> → arquivo <code>.dbc</code>.</li>
+  <li>Abrir <code>00_Setup</code> → compute <b>Serverless</b> → <b>Run all</b>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ============================== 4. TEORIA ============================== -->
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h1><span class="num">4</span>Introdução e apresentação teórica <span class="tempo">13:30 – 14:30 · 60 min</span></h1>
+<p>Sugestão: ~25 slides, poucos textos e uma demonstração rápida ao vivo no final de cada bloco (≤ 1 min). Sempre ancore
+os conceitos no dia a dia da LogComex: <b>dados de comércio exterior em escala, de muitas fontes, servidos a clientes</b>
+por meio de produtos com IA.</p>
+
+<h3>Abertura <span class="tempo">5 min</span></h3>
+<ul>
+  <li>Objetivo da tarde e o que cada um levará pronto (os 4 artefatos).</li>
+  <li>Agenda e dinâmica: "teoria curta, mão na massa longa". Quem tiver dúvida levanta a mão — há ajudantes circulando.</li>
+</ul>
+
+<h3>1 · Data Intelligence Platform <span class="tempo">12 min</span></h3>
+<ul>
+  <li>Lakehouse: dados em formato aberto (Delta Lake / Apache Iceberg) no seu storage + um único motor para engenharia, BI, ciência de dados e IA generativa.</li>
+  <li>"Inteligência de dados": a plataforma entende a semântica do <i>seu</i> negócio (metadados, uso, linhagem) — base do Assistant, do Genie e dos dashboards com IA.</li>
+  <li>Serverless: sem clusters para dimensionar; paga-se pelo uso.</li>
+</ul>
+<p class="fala">"Hoje uma DI nasce num arquivo do Siscomex e termina como um insight no produto de vocês. Quantas ferramentas existem nesse caminho? A proposta é que seja uma só."</p>
+
+<h3>2 · Unity Catalog <span class="tempo">10 min</span></h3>
+<ul>
+  <li>Hierarquia <code>catálogo.schema.objeto</code> para tabelas, volumes (arquivos), funções, modelos, dashboards e Genie.</li>
+  <li>Permissões em SQL (<code>GRANT</code>), linhagem automática até a coluna, auditoria, tags e classificação de dados sensíveis (ex.: CNPJ).</li>
+  <li>Filtros de linha e máscaras de coluna → cada cliente da LogComex enxerga só os próprios dados no mesmo modelo.</li>
+  <li>Delta Sharing: compartilhar dados com clientes e parceiros sem cópia.</li>
+</ul>
+
+<h3>3 · Engenharia de dados: Lakeflow + Delta Lake <span class="tempo">10 min</span></h3>
+<ul>
+  <li><b>Lakeflow Connect</b> (conectores gerenciados para bancos e SaaS), <b>Auto Loader</b> para arquivos, <b>Declarative Pipelines</b> (SQL/Python declarativo com qualidade embutida) e <b>Jobs</b> (orquestração).</li>
+  <li>Arquitetura medalhão: Bronze (como chegou) · Silver (limpo e conformado) · Gold (pronto para o negócio).</li>
+  <li>Delta Lake: ACID, <i>constraints</i>, histórico, <i>time travel</i>, otimizações automáticas (liquid clustering, predictive optimization).</li>
+</ul>
+
+<h3>4 · Databricks SQL e AI/BI Dashboards <span class="tempo">8 min</span></h3>
+<ul>
+  <li>SQL Warehouse serverless: partida em segundos, alta concorrência — o motor por trás de dashboards, Genie e apps.</li>
+  <li>Dashboards nativos sobre o Unity Catalog: sem extrações, permissões herdadas, criação de gráficos por linguagem natural, publicação com credenciais embutidas, agendamentos e <b>embedding</b> em portais externos.</li>
+</ul>
+
+</div>
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h3>5 · AI/BI Genie <span class="tempo">7 min</span></h3>
+<ul>
+  <li>Perguntas em português → SQL auditável → tabela/gráfico. O "segredo" é a <b>curadoria</b>: tabelas certas, comentários, instruções de negócio, exemplos de SQL e benchmarks.</li>
+  <li>Genie Conversation API: levar a experiência para dentro de aplicações (o que faremos no Lab 4) e de ferramentas como Slack/Teams.</li>
+</ul>
+<p class="fala">"O Genie não é um chatbot genérico: é o time de dados de vocês ensinando o vocabulário do comex — FOB, CIF, canal vermelho, transit time — uma vez, para todos usarem."</p>
+
+<h3>6 · Databricks Apps e a visão integrada <span class="tempo">8 min</span></h3>
+<ul>
+  <li>Apps (Streamlit, Dash, Gradio, FastAPI, React…) hospedados na plataforma: SSO, service principal próprio, acesso nativo a SQL, Genie, Model Serving e Lakebase.</li>
+  <li>Desenho final da tarde: arquivos → pipeline → Gold → Dashboard + Genie → App. Mostre o diagrama abaixo e abra para perguntas.</li>
+</ul>
+<div style="display:flex;align-items:center;gap:2mm;margin-top:3mm"><div style="background:#3F3F46;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">Fontes<div style="font-weight:400;font-size:7pt;color:#CFC6E6">Siscomex · armadores · ERP</div></div><div style="color:#6613D0;font-weight:700;font-size:13pt">→</div><div style="background:#0B0D19;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">Volume<div style="font-weight:400;font-size:7pt;color:#CFC6E6">landing zone</div></div><div style="color:#6613D0;font-weight:700;font-size:13pt">→</div><div style="background:#0B0D19;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">Bronze<div style="font-weight:400;font-size:7pt;color:#CFC6E6">Auto Loader</div></div><div style="color:#6613D0;font-weight:700;font-size:13pt">→</div><div style="background:#0B0D19;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">Silver<div style="font-weight:400;font-size:7pt;color:#CFC6E6">qualidade · SQL</div></div><div style="color:#6613D0;font-weight:700;font-size:13pt">→</div><div style="background:#6613D0;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">Gold<div style="font-weight:400;font-size:7pt;color:#CFC6E6">tabelas de negócio</div></div><div style="color:#6613D0;font-weight:700;font-size:13pt">→</div><div style="display:flex;flex-direction:column;gap:1.5mm"><div style="background:#4A0E99;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">AI/BI Dashboard<div style="font-weight:400;font-size:7pt;color:#CFC6E6"></div></div><div style="background:#4A0E99;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">Genie space<div style="font-weight:400;font-size:7pt;color:#CFC6E6"></div></div><div style="background:#4A0E99;color:white;border-radius:2mm;padding:2.5mm 3mm;text-align:center;font-size:8.4pt;font-weight:600;min-width:22mm">Databricks App<div style="font-weight:400;font-size:7pt;color:#CFC6E6"></div></div></div></div><div style="margin-top:2mm;background:#F6F3FC;border:1.5px dashed #6613D0;border-radius:2mm;padding:1.5mm;text-align:center;font-size:8.4pt;color:#4A0E99;font-weight:600">Unity Catalog — governança, permissões, linhagem e auditoria em todas as etapas</div>
+</div>
+
+<!-- ============================== 5. LABS ============================== -->
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h1><span class="num">5</span>Condução dos labs <span class="tempo">14:30 – 16:45</span></h1>
+
+<h2>Lab 0 · Setup automatizado <span class="tempo">14:30 – 14:40</span></h2>
+<p><b>Notebook:</b> <code>00_Setup</code> · <b>Execução:</b> Run all (~3 min).</p>
+<ul>
+  <li>Mostre na tela a tabela do topo do notebook: o que é criado e onde. Explique o isolamento por usuário.</li>
+  <li>Mostre a mensagem final <b>✅ Ambiente pronto</b> com os volumes gerados (47.040 DIs, 20.077 DU-Es, 33.202 eventos).</li>
+  <li>Abra o Volume no <b>Catalog Explorer</b> e mostre as pastas da landing zone.</li>
+</ul>
+<div class="caixa alerta"><b>Se algo falhar:</b> confira se o notebook está em <b>Serverless</b> e se o catálogo do widget tem permissão
+de <code>CREATE SCHEMA</code>. Quem estiver muito atrasado: widget <code>fast_track = sim</code> e rodar a célula 5 — executa o Lab 1 inteiro.</div>
+
+<h2>Lab 1 · Engenharia de dados <span class="tempo">14:40 – 15:10</span></h2>
+<p><b>Notebook:</b> <code>01_Engenharia_de_Dados</code> · <b>Dinâmica:</b> célula a célula, o instrutor projeta e comenta; a turma acompanha.</p>
+<table>
+  <tr><th style="width:18%">Passo</th><th>O que destacar</th><th style="width:28%">Resultado esperado</th></tr>
+  <tr><td>1.1 Landing</td><td><code>read_files</code> lê CSV direto em SQL, com schema inferido.</td><td>10 DIs de ago/2026.</td></tr>
+  <tr><td>1.2 Bronze</td><td>Auto Loader com <code>availableNow</code>: checkpoint, incremental, metadados de auditoria. JSON aninhado com <code>read_files</code>.</td><td>45.274 linhas em <code>bronze_importacoes</code>.</td></tr>
+  <tr><td>1.3 Arquivo novo</td><td>Chega o CSV de set/2026: só ele é processado — sem reprocessar 32 meses.</td><td>+1.766 linhas novas.</td></tr>
+  <tr><td>1.4 Silver</td><td>Diagnóstico de qualidade → tipagem, padronização de países, dedupe com <code>QUALIFY</code>, enriquecimento (NCM, empresa, PTAX), quarentena e <code>CHECK constraint</code>.</td><td>46.295 DIs válidas · 279 em quarentena · grafias de países: 77 → 26.</td></tr>
+  <tr><td>1.5 Gold</td><td>3 tabelas de negócio: balança mensal, desempenho de portos, situação de cada contêiner.</td><td>1ª descoberta: <b>Paranaguá</b> 2,3 → 5,9 dias.</td></tr>
+  <tr><td>1.6 Governança</td><td>Comentários de colunas (alimentam o Genie!), tags, <code>DESCRIBE HISTORY</code>, time travel e grafo de linhagem.</td><td>Linhagem arquivo → bronze → silver → gold.</td></tr>
+</table>
+<p class="fala">"Repare que não configuramos nada para ter linhagem, histórico ou auditoria — isso vem do Unity Catalog e do Delta. Em produção, este mesmo SQL vira um Lakeflow Declarative Pipeline ou um Job agendado."</p>
+<p><b>Perguntas para a turma:</b> Onde hoje vocês tratam duplicidade de DIs? Como garantem que um valor FOB negativo não chegue ao cliente?</p>
+</div>
+
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+
+<h2>Lab 2 · AI/BI Dashboards <span class="tempo">15:10 – 15:40</span></h2>
+<p><b>Notebook:</b> <code>02_Dashboard_AIBI</code> · a 1ª célula cria e publica o dashboard <b>Radar Comex</b> (2 páginas + filtros globais, tema roxo/preto LogComex).</p>
+<ol>
+  <li><b>Explorar (5 min)</b> — clique em <i>China</i> no gráfico de países (cross-filter); filtre <i>Automotivo</i> e mostre o salto de 2025; na página 2, Paranaguá em roxo no gráfico de desembaraço e o ranking de armadores.</li>
+  <li><b>Visualização com IA (10 min)</b> — Edit draft → Add a visualization → ✨ <i>"Gráfico de barras com as 10 NCMs com maior valor FOB importado"</i>. Mostre a edição do gráfico gerado.</li>
+  <li><b>Dataset SQL (5 min)</b> — preço médio US$/kg por NCM e país: o clássico de inteligência de mercado da LogComex.</li>
+  <li><b>Publicar e distribuir (5 min)</b> — credenciais embutidas × do visualizador, Share, Schedule por e-mail.</li>
+</ol>
+<div class="caixa"><b>Valores de referência (filtro padrão, todo o período):</b> FOB importado ≈ US$ 51,9 bi · FOB exportado ≈ US$ 148,8 bi ·
+saldo ≈ US$ 96,9 bi · 66.213 operações. Tempo médio de desembaraço geral ≈ 2,2 dias; canal vermelho ≈ 6,1%.</div>
+<p class="fala">"Esse mesmo dashboard pode ser embarcado no portal de um cliente da LogComex, com filtro por linha garantindo que cada cliente veja só os próprios processos."</p>
+
+<h2>Lab 3 · Genie <span class="tempo">15:50 – 16:20</span></h2>
+<p><b>Notebook:</b> <code>03_Genie</code> · a 1ª célula cria o espaço curado (7 tabelas, glossário de comex, 3 exemplos SQL, 6 perguntas sugeridas, 3 benchmarks).</p>
+<ol>
+  <li><b>Perguntas (8 min)</b> — sugeridas + livres. Peça para sempre abrir <b>Show code</b>. Sugestão ao vivo:
+    <i>"Compare o tempo de desembaraço de Paranaguá com Santos nos últimos 6 meses"</i> → <i>"mostre em um gráfico de linhas"</i> →
+    <i>"por que aumentou?"</i>.</li>
+  <li><b>Ensinar um conceito (10 min)</b> — <i>"Quantas operações críticas tivemos em 2026?"</i> antes e depois da instrução
+    <i>"Operação crítica = DI em canal Vermelho ou Cinza com valor FOB acima de US$ 1 milhão"</i>. Resultado esperado após a instrução: <b>185</b> DIs.</li>
+  <li><b>Benchmarks (5 min)</b> — Run all benchmarks; discuta como isso vira um processo de qualidade contínuo.</li>
+  <li><b>Distribuição (5 min)</b> — Genie dentro do dashboard, Share com <i>Can run</i>, API (gancho para o Lab 4).</li>
+</ol>
+<table>
+  <tr><th>Pergunta</th><th style="width:38%">Resposta esperada</th></tr>
+  <tr><td>Qual armador tem o maior atraso médio nas rotas vindas da Ásia?</td><td>ZIM (≈ 7,0 dias)</td></tr>
+  <tr><td>Quais os 10 maiores importadores de veículos elétricos em 2026?</td><td>Líder: Capixaba Autopeças Importação e Exportação Ltda</td></tr>
+  <tr><td>Qual o valor FOB total importado em 2025?</td><td>≈ US$ 19,0 bi</td></tr>
+</table>
+<p class="fala">"Tudo o que o Genie respondeu passou pelas permissões do Unity Catalog de quem perguntou. Não há um atalho para os dados."</p>
+</div>
+
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+
+<h2>Lab 4 · Databricks Apps <span class="tempo">16:20 – 16:45</span></h2>
+<p><b>Notebook:</b> <code>04_Databricks_Apps</code> · o app foi criado no Lab 0, então o compute já está ativo.</p>
+<ol>
+  <li><b>4.1 Código</b> — grava <code>app.py</code> (Streamlit) e <code>app.yaml</code> (comando + variáveis) na pasta do usuário. Abra o <code>app.py</code> no editor e mostre as 4 abas e a função <code>genie()</code> (Conversation API em ~30 linhas).</li>
+  <li><b>4.2 Permissões</b> — o service principal do app recebe só <code>SELECT</code> no schema, <code>CAN_USE</code> no warehouse e <code>CAN_RUN</code> no Genie.</li>
+  <li><b>4.3 Deploy</b> (~1–3 min) e exploração: filtros, aba NCM (veículos elétricos × painéis solares), rastreamento de um contêiner atrasado, chat com o Genie.</li>
+  <li><b>Alterar e redeployar</b> — descomentar o bloco <code>🏁 EXERCÍCIO DO LAB 4</code> (Top 10 destinos das exportações) e rodar a célula 4.3 de novo.</li>
+  <li><b>Desafio</b> — pedir ao Assistant, no editor do <code>app.py</code>, um gráfico de pizza por via de transporte.</li>
+  <li><b>Fechamento do instrutor (3 min)</b> — abra o seu app React (<code>05_Demo_Instrutor_App_React</code>) ao lado do Streamlit: mesmos dados,
+    mesmo SSO e permissões, agora como produto (React + API FastAPI). Mostre a troca de filtros sem recarregar a página e o chat com o Genie.</li>
+</ol>
+<p class="fala">"Esse é o caminho mais curto entre o time de dados e um produto: o mesmo dado governado, servido por um app com SSO, sem infraestrutura para manter. O time de dados prototipa em Streamlit; o time de produto entrega em React — na mesma plataforma. Para produção, versionem em Git e implantem com Asset Bundles."</p>
+
+<h1 style="margin-top:8mm"><span class="num">6</span>Encerramento <span class="tempo">16:45 – 17:00</span></h1>
+<ul>
+  <li><b>Recapitulação (5 min)</b> — volte ao diagrama da teoria e marque o que cada um construiu: pipeline, dashboard, Genie, app.</li>
+  <li><b>Mapa de oportunidades LogComex (5 min)</b> — pergunte à turma onde aplicariam primeiro. Exemplos para provocar:
+    <ul>
+      <li>ingestão incremental das bases de DI/DU-E e de tracking com Lakeflow, com qualidade declarativa;</li>
+      <li>dashboards AI/BI embarcados para clientes, com segurança por linha (cada cliente vê seus processos);</li>
+      <li>Genie como "analista de comex" interno e, via API, dentro dos produtos da LogComex;</li>
+      <li>Apps para protótipos rápidos de novos produtos de dados e ferramentas internas.</li>
+    </ul></li>
+  <li><b>Próximos passos (5 min)</b> — definir 1 caso de uso para um piloto com critérios de sucesso, sessão de arquitetura com o time, trilhas gratuitas da Databricks Academy, pesquisa de satisfação.</li>
+</ul>
+<div class="caixa preta"><b>Mensagem final:</b> em uma tarde, saímos de arquivos brutos de comércio exterior para um produto de dados
+com BI, IA conversacional e uma aplicação — tudo governado em um só lugar. O próximo passo é fazer isso com os dados reais da LogComex.</div>
+</div>
+
+<!-- ============================== 7. TROUBLESHOOTING ============================== -->
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h1><span class="num">7</span>Solução de problemas</h1>
+<table>
+  <tr><th style="width:34%">Sintoma</th><th>Causa provável → solução</th></tr>
+  <tr><td><code>PERMISSION_DENIED ... CREATE SCHEMA</code> no Setup</td><td>Catálogo sem permissão. Troque o widget <code>catalogo</code> por um catálogo onde o usuário pode criar schemas, ou (modalidade B) rode <code>00_Instrutor_Preparacao</code>.</td></tr>
+  <tr><td>Widget <code>catalogo</code> mostra <code>hive_metastore</code></td><td>Workspace sem catálogo padrão no UC. Informe um catálogo do Unity Catalog no widget.</td></tr>
+  <tr><td>"Tabelas Gold não encontradas" nos Labs 2–4</td><td>Lab 1 incompleto. Rode o <code>00_Setup</code> com <code>fast_track = sim</code> (célula 5).</td></tr>
+  <tr><td>Notebook pede para criar cluster</td><td>Selecione <b>Serverless</b> no seletor de compute.</td></tr>
+  <tr><td>Dashboard com widgets vazios</td><td>Warehouse parado/iniciando: aguarde ~30 s e atualize. Confirme o warehouse em <i>Data</i> do dashboard.</td></tr>
+  <tr><td>Genie responde "não tenho acesso"</td><td>O usuário precisa de <code>SELECT</code> nas tabelas (ok no próprio schema) e <code>CAN_USE</code> no warehouse.</td></tr>
+  <tr><td>Deploy do app: <code>TimeoutError</code> no compute</td><td>Compute ainda subindo ou parado — rode a célula 4.3 de novo (ela reinicia o compute automaticamente).</td></tr>
+  <tr><td>App abre mas mostra erro de permissão em SQL</td><td>A célula 4.2 avisou ⚠️ em <code>USE CATALOG</code>/warehouse: o instrutor/admin concede (ou rode <code>00_Instrutor_Preparacao</code>) e recarregue o app.</td></tr>
+  <tr><td>App: erro após editar <code>app.py</code></td><td>Abra <code>&lt;url do app&gt;/logz</code>. Para voltar ao original: widget <code>recriar_codigo = sim</code> na célula 4.1.</td></tr>
+  <tr><td>Limpeza pós-workshop</td><td>Notebook <code>99_Limpeza</code> (widget <code>confirmar = sim</code>) remove app, Genie, dashboard e schema do participante.</td></tr>
+  <tr><td>Limite de apps do workspace atingido</td><td>Participantes formam duplas (um app por dupla) ou removem apps antigos que sejam deles.</td></tr>
+</table>
+
+</div>
+<div class="secao">
+<div class="topo"><img src="../assets/logcomex-logotipo.svg"><span>Workshop LogComex × Databricks · Roteiro do instrutor</span></div>
+<h1><span class="num">8</span>Apêndice · modelo de dados</h1>
+<table>
+  <tr><th style="width:30%">Tabela</th><th>Conteúdo</th><th style="width:16%">Linhas</th></tr>
+  <tr><td><code>silver_importacoes</code></td><td>1 linha por DI: importador, NCM, país, URF, via, incoterm, FOB/CIF/BRL, II estimado, canal, dias de desembaraço, armador.</td><td>46.295</td></tr>
+  <tr><td><code>silver_exportacoes</code></td><td>1 linha por DU-E: exportador, NCM, país de destino, porto, FOB.</td><td>19.918</td></tr>
+  <tr><td><code>silver_eventos_embarque</code></td><td>Milestones dos contêineres (GATE_IN … GATE_OUT).</td><td>32.711</td></tr>
+  <tr><td><code>silver_empresas</code> · <code>silver_ncm</code> · <code>silver_cambio_diario</code></td><td>Dimensões: 380 empresas, 37 NCMs, PTAX diária.</td><td>—</td></tr>
+  <tr><td><code>gold_comercio_exterior_mensal</code></td><td>Balança mensal por fluxo, NCM, país, UF, porto e via.</td><td>31.175</td></tr>
+  <tr><td><code>gold_desempenho_portos</code></td><td>DIs, canais e tempo de desembaraço por mês e URF.</td><td>462</td></tr>
+  <tr><td><code>gold_embarques</code></td><td>1 linha por contêiner: rota, ETA, transit time, atraso, status.</td><td>5.200</td></tr>
+</table>
+</div>
+
+</body>
+</html>
