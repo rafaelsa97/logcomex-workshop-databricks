@@ -213,5 +213,4 @@ Depois do workshop, rode o `99_Limpeza` (ou pare o app em *Compute → Apps*) pa
   app React compilado (zip em base64) no notebook 05. Depois:
   `databricks workspace import-dir "dist/LogComex Workshop" "<pasta>" --overwrite` e
   `databricks workspace export "<pasta>" --format DBC --file dist/LogComex_Workshop.dbc`.
-- `roteiro/roteiro.html` + `tools/metricas_roteiro.py` (preenche os números reais) → Chrome headless → PDF.
 - `tools/teste_app.py`: teste headless do app (Streamlit AppTest) em job serverless.
