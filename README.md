@@ -20,22 +20,6 @@ serem descobertas ao longo dos labs:
 
 ---
 
-## Agenda
-
-| Horário | Bloco |
-|---|---|
-| 13:00 – 13:30 | Chegada, login no workspace, importação dos notebooks e execução do **00_Setup** |
-| 13:30 – 14:30 | Introdução teórica: Data Intelligence Platform, Unity Catalog, Lakeflow/Delta, AI/BI, Genie e Apps |
-| 14:30 – 14:40 | Lab 0: checagem do setup |
-| 14:40 – 15:10 | Lab 1: Engenharia de dados |
-| 15:10 – 15:40 | Lab 2: AI/BI Dashboards |
-| 15:40 – 15:50 | Intervalo |
-| 15:50 – 16:20 | Lab 3: Genie |
-| 16:20 – 16:45 | Lab 4: Databricks Apps |
-| 16:45 – 17:00 | Encerramento e próximos passos |
-
----
-
 ## Notebooks
 
 Todos os notebooks rodam em **compute serverless** e não exigem nenhuma configuração manual. Os nomes de
